@@ -1,0 +1,49 @@
+<header class="bg-blue-600 text-white p-4 shadow flex items-center gap-3">
+  <a routerLink="/" class="hover:underline">← Back</a>
+  <h1 class="text-2xl font-bold">SpaceX Mission Details</h1>
+</header>
+
+@if (loading()) {
+  <p class="text-center p-8 text-gray-500">Loading...</p>
+} @else if (mission()) {
+  @let m = mission()!;
+  <div class="max-w-4xl mx-auto bg-white rounded-lg shadow m-4 p-6">
+    <div class="flex flex-col md:flex-row gap-6">
+      @if (m.links.mission_patch) {
+        <img [src]="m.links.mission_patch" alt="patch" class="w-48 h-48 object-contain" />
+      }
+      <div class="flex-1">
+        <h2 class="text-2xl font-bold mb-2">Mission - {{ m.mission_name }}</h2>
+        <p><strong>Flight Number:</strong> {{ m.flight_number }}</p>
+        <p><strong>Launch Year:</strong> {{ m.launch_year }}</p>
+
+        <h3 class="text-xl font-semibold mt-4 mb-1">Rocket</h3>
+        <p><strong>Name:</strong> {{ m.rocket.rocket_name }}</p>
+        <p><strong>Type:</strong> {{ m.rocket.rocket_type }}</p>
+
+        @if (m.launch_site) {
+          <h3 class="text-xl font-semibold mt-4 mb-1">Launch Site</h3>
+          <p>{{ m.launch_site.site_name_long || m.launch_site.site_name }}</p>
+        }
+      </div>
+    </div>
+
+    <h3 class="text-xl font-semibold mt-6 mb-1">Launch Details</h3>
+    <p class="text-gray-700">{{ m.details || 'No details available.' }}</p>
+
+    <h3 class="text-xl font-semibold mt-6 mb-2">More Info</h3>
+    <div class="flex gap-4">
+      @if (m.links.article_link) {
+        <a [href]="m.links.article_link" target="_blank" class="text-blue-600 hover:underline">Article</a>
+      }
+      @if (m.links.wikipedia) {
+        <a [href]="m.links.wikipedia" target="_blank" class="text-blue-600 hover:underline">Wikipedia</a>
+      }
+      @if (m.links.video_link) {
+        <a [href]="m.links.video_link" target="_blank" class="text-blue-600 hover:underline">Video</a>
+      }
+    </div>
+  </div>
+} @else {
+  <p class="text-center p-8 text-gray-500">Mission not found.</p>
+}
