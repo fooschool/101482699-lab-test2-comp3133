@@ -2,8 +2,7 @@
   <label for="year" class="font-medium text-gray-700">Filter by Launch Year:</label>
   <select
     id="year"
-    [(ngModel)]="year"
-    (change)="emit()"
+    [formControl]="yearControl"
     class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
     <option value="">All</option>
     @for (y of years; track y) {

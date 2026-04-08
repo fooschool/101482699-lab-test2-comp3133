@@ -16,6 +16,9 @@
         <h2 class="text-2xl font-bold mb-2">Mission - {{ m.mission_name }}</h2>
         <p><strong>Flight Number:</strong> {{ m.flight_number }}</p>
         <p><strong>Launch Year:</strong> {{ m.launch_year }}</p>
+        @if (m.launch_date_utc) {
+          <p><strong>Launch Date:</strong> {{ m.launch_date_utc | date:'mediumDate' }}</p>
+        }
 
         <h3 class="text-xl font-semibold mt-4 mb-1">Rocket</h3>
         <p><strong>Name:</strong> {{ m.rocket.rocket_name }}</p>

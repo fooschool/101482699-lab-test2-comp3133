@@ -1,4 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SpacexApiService } from '../network/spacexapi.service';
 import { Mission } from '../models/mission';
@@ -6,7 +7,7 @@ import { Mission } from '../models/mission';
 @Component({
   selector: 'app-missiondetails',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, DatePipe],
   templateUrl: './missiondetails.component.html'
 })
 export class MissionDetailsComponent implements OnInit {
