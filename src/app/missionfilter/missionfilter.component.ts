@@ -5,7 +5,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   selector: 'app-missionfilter',
   standalone: true,
   imports: [ReactiveFormsModule],
-  templateUrl: './missionfilter.component.html'
+  templateUrl: './missionfilter.component.html',
 })
 export class MissionFilterComponent implements OnInit {
   @Output() yearChange = new EventEmitter<string>();
@@ -13,7 +13,9 @@ export class MissionFilterComponent implements OnInit {
   years = Array.from({ length: 14 }, (_, i) => String(2006 + i));
 
   ngOnInit() {
-    this.yearControl.valueChanges.subscribe(v => this.yearChange.emit(v ?? ''));
+    this.yearControl.valueChanges.subscribe((v) =>
+      this.yearChange.emit(v ?? ''),
+    );
   }
 
   clear() {

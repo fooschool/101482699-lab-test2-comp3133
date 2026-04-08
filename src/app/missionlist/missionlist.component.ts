@@ -8,7 +8,7 @@ import { MissionFilterComponent } from '../missionfilter/missionfilter.component
   selector: 'app-missionlist',
   standalone: true,
   imports: [RouterLink, MissionFilterComponent],
-  templateUrl: './missionlist.component.html'
+  templateUrl: './missionlist.component.html',
 })
 export class MissionListComponent implements OnInit {
   private api = inject(SpacexApiService);
@@ -25,13 +25,15 @@ export class MissionListComponent implements OnInit {
 
   load(year: string) {
     this.loading.set(true);
-    const obs = year ? this.api.getLaunchesByYear(year) : this.api.getLaunches();
+    const obs = year
+      ? this.api.getLaunchesByYear(year)
+      : this.api.getLaunches();
     obs.subscribe({
       next: (data) => {
         this.missions.set(data);
         this.loading.set(false);
       },
-      error: () => this.loading.set(false)
+      error: () => this.loading.set(false),
     });
   }
 }

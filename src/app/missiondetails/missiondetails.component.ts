@@ -8,7 +8,7 @@ import { Mission } from '../models/mission';
   selector: 'app-missiondetails',
   standalone: true,
   imports: [RouterLink, DatePipe],
-  templateUrl: './missiondetails.component.html'
+  templateUrl: './missiondetails.component.html',
 })
 export class MissionDetailsComponent implements OnInit {
   private api = inject(SpacexApiService);
@@ -23,7 +23,7 @@ export class MissionDetailsComponent implements OnInit {
         this.mission.set(m);
         this.loading.set(false);
       },
-      error: () => this.loading.set(false)
+      error: () => this.loading.set(false),
     });
   }
 }
