@@ -1,0 +1,53 @@
+<header class="bg-blue-600 text-white p-4 shadow">
+  <h1 class="text-2xl font-bold">SpaceX Mission Launch List</h1>
+</header>
+
+<app-missionfilter (yearChange)="onYearChange($event)"></app-missionfilter>
+
+@if (loading()) {
+  <p class="text-center p-8 text-gray-500">Loading missions...</p>
+} @else {
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+    @for (m of missions(); track m.flight_number) {
+      <div class="bg-white rounded-lg shadow p-4 flex flex-col">
+        <div class="flex items-center gap-3 mb-3">
+          @if (m.links.mission_patch_small) {
+            <img [src]="m.links.mission_patch_small" alt="patch" class="w-12 h-12 object-contain" />
+          }
+          <div>
+            <h2 class="font-bold text-lg">{{ m.mission_name }} #{{ m.flight_number }}</h2>
+            <p class="text-sm text-gray-500">{{ m.launch_year }}</p>
+          </div>
+        </div>
+
+        @switch (m.launch_success) {
+          @case (true) {
+            <span class="inline-block w-fit text-xs px-2 py-1 rounded bg-green-100 text-green-700 mb-2">Success</span>
+          }
+          @case (false) {
+            <span class="inline-block w-fit text-xs px-2 py-1 rounded bg-red-100 text-red-700 mb-2">Failed</span>
+          }
+          @default {
+            <span class="inline-block w-fit text-xs px-2 py-1 rounded bg-gray-100 text-gray-600 mb-2">Unknown</span>
+          }
+        }
+
+        <p class="text-sm text-gray-600 mb-2">{{ m.details || 'No details available.' }}</p>
+        <p class="text-sm mb-2"><strong>Rocket:</strong> {{ m.rocket.rocket_name }} ({{ m.rocket.rocket_type }})</p>
+
+        <div class="flex gap-3 mt-auto pt-3 text-sm">
+          @if (m.links.article_link) {
+            <a [href]="m.links.article_link" target="_blank" class="text-blue-600 hover:underline">Article</a>
+          }
+          @if (m.links.wikipedia) {
+            <a [href]="m.links.wikipedia" target="_blank" class="text-blue-600 hover:underline">Wiki</a>
+          }
+          @if (m.links.video_link) {
+            <a [href]="m.links.video_link" target="_blank" class="text-blue-600 hover:underline">Video</a>
+          }
+          <a [routerLink]="['/mission', m.flight_number]" class="ml-auto text-blue-600 hover:underline">Details →</a>
+        </div>
+      </div>
+    }
+  </div>
+}

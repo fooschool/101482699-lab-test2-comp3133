@@ -1,0 +1,18 @@
+<div class="flex items-center gap-3 p-4 bg-white border-b">
+  <label for="year" class="font-medium text-gray-700">Filter by Launch Year:</label>
+  <select
+    id="year"
+    [(ngModel)]="year"
+    (change)="emit()"
+    class="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <option value="">All</option>
+    @for (y of years; track y) {
+      <option [value]="y">{{ y }}</option>
+    }
+  </select>
+  <button
+    (click)="clear()"
+    class="px-4 py-2 border border-blue-500 text-blue-500 rounded hover:bg-blue-50">
+    Clear
+  </button>
+</div>
