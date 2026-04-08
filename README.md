@@ -1,27 +1,38 @@
-# 101482699LabTest2Comp3133
+# SpaceX Mission Launch Explorer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+COMP 3133 Lab Test 2 - Angular application that consumes the public SpaceX REST API to display mission launches.
 
-## Development server
+## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+An Angular 18 application that fetches SpaceX launch data from the public SpaceX API and displays it as a list of mission cards. Users can filter missions by launch year and click into a mission to see full details.
 
-## Code scaffolding
+## Tech
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 18 (standalone components, signals)
+- Angular HttpClient for API calls
+- ReactiveFormsModule for the year filter
+- Tailwind CSS for styling
+- SpaceX REST API v3 (`https://api.spacexdata.com/v3`)
+
+## How to run
+
+```bash
+npm install
+npm start
+```
+
+Then open `http://localhost:4200`.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npm run build
+```
 
-## Running unit tests
+## Screenshots
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Mission list](screenshots/mission-list.png)
 
-## Running end-to-end tests
+![Filter](screenshots/filter.png)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![Mission details](screenshots/mission-details.png)
